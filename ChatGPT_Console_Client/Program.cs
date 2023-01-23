@@ -16,27 +16,27 @@ if (args.Length > 0)
 
     try
     {
-        var dyData = JsonConvert.DeserializeObject<dynamic>(responseString);
+        var responseData = JsonConvert.DeserializeObject<dynamic>(responseString);
 
-        string guess = GuessCommand(dyData!.choices[0].text);
+        string guess = GuessCommand(responseData!.choices[0].text);
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine($"---> My guess at the command prompt is: {guess}");
+        Console.WriteLine($"guess at the command prompt is: {guess}");
         Console.ResetColor();
 
     }
     catch(Exception ex)
     {
-        Console.WriteLine($"---> Could not deserialize the JSON: {ex.Message}");
+        Console.WriteLine($"Could not deserialize the JSON: {ex.Message}");
     }
 }
 else
 {
-    Console.WriteLine("---> You need to provide some input");
+    Console.WriteLine("Enter some input");
 }
 
 static string GuessCommand(string raw)
 {
-    Console.WriteLine("---> GPT-3 API Returned Text:");
+    Console.WriteLine("ChatGPT API Returned Text:");
     Console.ForegroundColor = ConsoleColor.Yellow;
     Console.WriteLine(raw);
 
